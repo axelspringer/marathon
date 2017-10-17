@@ -9,16 +9,16 @@ build() {
   docker build \
     --compress \
     --squash \
-    -t pixelmilk/marathon \
+    -t axelspringer/marathon \
     --build-arg MARATHON_VERSION=${TAG} \
     . || exit $?
 
 # tag
   echo
-  echo Tagging pixelmilk/marathon:${TAG}
-  docker tag pixelmilk/marathon pixelmilk/marathon:${TAG} \
+  echo Tagging axelspringer/marathon:${TAG}
+  docker tag axelspringer/marathon axelspringer/marathon:${TAG} \
     || exit $?
 }
 
 #     Mesos version
-build "1.4.7"
+build "1.5.1"

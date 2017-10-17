@@ -1,10 +1,7 @@
-FROM pixelmilk/mesos:1.3.1 as build
+FROM axelspringer/mesos:1.4.0 as build
 
 ARG MARATHON_VERSION
-ARG MAINTAINER
-
-ENV VERSION ${MARATHON_VERSION:-1.4.7}
-ENV MAINTAINER ${MAINTAINER:-sebastian@katallaxie.me}
+ENV VERSION ${MARATHON_VERSION:-1.5.1}
 
 RUN \
     # Update the packages.
@@ -31,22 +28,22 @@ RUN \
     cp project/sbt /usr/local/bin && \
     chmod +x /usr/local/bin/sbt && \
     # Build
-    sbt -Dsbt.log.format=false assembly && \
+    sbt -Dsbt.log.format=false universal:packageZipTarball && \
     # Move into place
-    mv $(find target -name 'marathon-assembly-*.jar' | sort | tail -1) ./ && \
-    rm -rf project/target project/project/target plugin-interface/target target/* ~/.sbt ~/.ivy2 && \
-    mv marathon-assembly-*.jar target && \
-    # Mov to final
-    cd .. && \
-    mv ${TEMP} /tmp/marathon
+    mv $(find target -name 'marathon-*.tgz' | sort | tail -1) /tmp
 
-FROM pixelmilk/mesos:1.3.1
-MAINTAINER Sebastian Doell <sebastian@katallaxie.me>
+FROM axelspringer/mesos:1.4.0
+MAINTAINER Sebastian Doell <sebastian.doell@axelspringer.de>
+
+ARG MARATHON_VERSION
+ENV VERSION ${MARATHON_VERSION:-1.5.1}
 
 COPY \
-     --from=build /tmp/marathon /
+     --from=build /tmp/marathon-${VERSION}.tgz /tmp
 
 RUN \
+    # Extract && delete
+    tar --strip-components=1 -xzvf /tmp/marathon-*.tgz -C / && rm -rf /tmp/*.tgz && \
     # Update the packages.
     apt-get -y update && \
     # Install neat tools
@@ -58,4 +55,4 @@ RUN \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV JAVA_HOME /docker-java-home
-ENTRYPOINT ["./bin/start"]
+ENTRYPOINT ["./bin/marathon"]

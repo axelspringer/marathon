@@ -1,12 +1,10 @@
-[![Build Status](https://travis-ci.org/katallaxie/mesos.svg?branch=master)](https://travis-ci.org/katallaxie/mesos) [![Docker Stars](https://img.shields.io/docker/stars/pixelmilk/mesos.svg)](https://hub.docker.com/r/pixelmilk/mesos/) [![Docker Pulls](https://img.shields.io/docker/pulls/pixelmilk/mesos.svg)](https://hub.docker.com/r/pixelmilk/mesos/)
+[![Build Status](https://travis-ci.org/axelspringer/marathon.svg?branch=master)](https://travis-ci.org/axelspringer/marathon) [![Docker Stars](https://img.shields.io/docker/stars/axelspringer/marathon.svg)](https://hub.docker.com/r/axelspringer/marathon/) [![Docker Pulls](https://img.shields.io/docker/pulls/axelspringer/marathon.svg)](https://hub.docker.com/r/axelspringer/marathon/)
 
-> This is the base container for the `pixelmilk/mesos-master` and `pixelmilk/mesos-agent` containers
+# marathon
 
-# mesos
+Marathon
 
-Mesos
-
-http://mesos.apache.org/
+https://github.com/mesosphere/marathon
 
 # License
 [MIT](/LICENSE)

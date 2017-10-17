@@ -7,12 +7,12 @@ push() {
 
 # base
   echo
-  echo Pushing pixelmilk/marathon:${TAG}
-  docker push pixelmilk/marathon:${TAG} || exit $?
+  echo Pushing axelspringer/marathon:${TAG}
+  docker push axelspringer/marathon:${TAG} || exit $?
 }
 
 # login docker before push
 docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 
 #    Mesos version
-push "1.4.7"
+push "1.5.1"
