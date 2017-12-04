@@ -15,4 +15,4 @@ push() {
 docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 
 #    Mesos version
-push "1.5.1"
+push "1.5.2"

@@ -1,4 +1,4 @@
-FROM axelspringer/mesos:1.4.0 as build
+FROM axelspringer/mesos:1.4.1 as build
 
 ARG MARATHON_VERSION
 ENV VERSION ${MARATHON_VERSION:-1.5.1}
@@ -32,7 +32,7 @@ RUN \
     # Move into place
     mv $(find target -name 'marathon-*.tgz' | sort | tail -1) /tmp
 
-FROM axelspringer/mesos:1.4.0
+FROM axelspringer/mesos:1.4.1
 MAINTAINER Sebastian Doell <sebastian.doell@axelspringer.de>
 
 ARG MARATHON_VERSION
